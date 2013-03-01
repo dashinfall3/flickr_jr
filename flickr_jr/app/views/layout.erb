@@ -11,6 +11,9 @@
   <title></title>
 </head>
 <body>
+  <% if current_user %>
+    <a href="/logout">Logout</a>
+  <% end %>
   <%= yield %>
 </body>
 </html>

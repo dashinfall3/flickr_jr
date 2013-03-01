@@ -1,4 +1,6 @@
 get '/' do
-  # Look in app/views/index.erb
+  @albums = Album.all
   erb :index
 end
+
+

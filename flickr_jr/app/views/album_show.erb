@@ -1,0 +1,6 @@
+<h2><%=@album.name%></h2>
+</h3><%=@album.description%></h3>
+
+<h2>by <a href="/users/<%=@album.user.id%>"><%=@album.user.username%></a></h2>
+
+<img src="<%= Photo.find(5).image %>">

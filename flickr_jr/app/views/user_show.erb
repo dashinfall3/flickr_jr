@@ -1,0 +1,26 @@
+<%=@user.username%>
+
+<div class="albums_container">
+  <% @user.albums.each do |album|%>
+    <%= erb :_album, :locals => { :album => album } %>
+  <% end %>
+</div>
+
+
+<div>
+  Upload a photo
+</div>
+
+<div>
+  <form action="/albums" method="post">
+    <input type="text" name="name" placeholder="album name">
+    <input type="text" name="description" placeholder="album description">
+    <input type="submit" value="Add album">
+  </form>
+</div>
+
+
+<form action="/photos" method="post" enctype="multipart/form-data">
+  <input type="file" name="filename">
+  <input type="submit" value="Add photo">
+</form>
