@@ -1,4 +1,4 @@
-<%=@user.username%>
+<h1><%=@user.username%></h1>
 
 <div class="albums_container">
   <% @user.albums.each do |album|%>
@@ -7,20 +7,15 @@
 </div>
 
 
-<div>
-  Upload a photo
-</div>
 
-<div>
-  <form action="/albums" method="post">
-    <input type="text" name="name" placeholder="album name">
-    <input type="text" name="description" placeholder="album description">
-    <input type="submit" value="Add album">
-  </form>
-</div>
+<% if current_user == @user %>
+  <div>
+    <h2> Create a new album </h2>
+    <form action="/albums" method="post">
+      <input type="text" name="name" placeholder="album name">
+      <input type="text" name="description" placeholder="album description">
+      <input type="submit" value="Add album">
+    </form>
+  </div>
+<% end %>
 
-
-<form action="/photos" method="post" enctype="multipart/form-data">
-  <input type="file" name="filename">
-  <input type="submit" value="Add photo">
-</form>

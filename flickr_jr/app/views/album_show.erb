@@ -1,6 +1,33 @@
-<h2><%=@album.name%></h2>
-</h3><%=@album.description%></h3>
+<h2><%=@album.name%> by <a href="/users/<%=@album.user.id%>"><%=@album.user.username%></a></h2>
+<h3>Description: <%=@album.description%></h3>
+<div>
+	<% if current_user == @album.user %>
+		<form action="<%=@album.id%>/photos" method="post" enctype="multipart/form-data">
+		  <input type="file" name="filename">
+		  <input type="submit" value="Add photo">
+		</form>
+	<% else %>
+		<a href="/">Login</a> to create albums and photos of your own!
+	<% end %>
+</div>
 
-<h2>by <a href="/users/<%=@album.user.id%>"><%=@album.user.username%></a></h2>
 
-<img src="<%= Photo.find(5).image %>">
+
+<% if @album.photos.count == 0 %>
+	<h2>There are no photos in this album!</h2>
+<% else %>
+	<div class="container">
+	  <div class="carousel_controls">
+	    <a href="#" id="previous_frame">&lt;</a>
+	    <a href="#" id="next_frame">&gt;</a>
+	  </div>
+	  
+	  <div class="carousel">
+	    <ul class="frames">
+			<% @album.photos.each do |photo| %>
+				<%= erb :_photo, :locals => {:photo => photo} %>
+			<% end %> 
+	    </ul>
+	  </div>
+	</div>
+<% end %>

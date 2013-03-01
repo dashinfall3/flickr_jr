@@ -17,5 +17,7 @@ yo this is albumfest
 
 <h2>Albums</h2>
 <div class="albums_container">
-  <%=@albums%>
+  <% @albums.each do |album|%>
+  	<%= erb :_album, :locals => {:album => album} %>
+  <% end %>
 </div>
